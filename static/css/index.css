@@ -29,6 +29,7 @@ body {
 
 
 .publication-title {
+  font-weight: normal; /* Make the text bold */
 }
 
 .publication-banner {
@@ -133,5 +134,10 @@ body {
   font-size: smaller;
 }
 
-
+.custom-code {
+  font-family: monospace; /* Use a monospace font */
+  color: inherit; /* Inherit the color from the surrounding text */
+  background: none; /* Remove the background */
+  padding: 0; /* Remove any default padding */
+}
 
