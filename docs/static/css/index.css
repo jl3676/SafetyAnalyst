@@ -141,3 +141,29 @@ body {
   padding: 0; /* Remove any default padding */
 }
 
+table {
+  margin: auto; /* Centers the table */
+  border-collapse: collapse; /* Merges the borders for a cleaner look */
+}
+
+th, td {
+  padding: 8px; /* Adds some spacing within cells */
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+th {
+  border-bottom: 2px solid black; /* Adds a thicker line under the column names */
+}
+
+thead tr:first-child th {
+  border-top: 3px solid black; /* Adds a thicker line at the top of the table */
+}
+
+tbody tr:nth-last-child(-n+3) td {
+  border-top: 1px solid black; /* Adds a line to the last three rows */
+}
+
+tbody tr:last-child td {
+  border-bottom: 2px solid black; /* Adds a thicker line at the bottom of the table */
+}
