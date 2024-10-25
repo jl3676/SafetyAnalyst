@@ -81,7 +81,8 @@ Similarly, benefit-trees can be generated as follows:
 
 ```python
 formatted_prompts = [tokenizer_benefit.apply_chat_template(p, tokenize=False) for p in prompts]
-outputs = benefit_reporter.generate(prompts=formatted_prompts, sampling_params=sampling_params)
+outputs = benefit_reporter.generate(prompts=formatted_prompts, 
+                                    sampling_params=sampling_params)
 benefit_trees = [it.outputs[0].text for it in outputs]
 ```
 
@@ -104,7 +105,7 @@ To combine two lists of harm trees and benefit trees corresponding to the same p
 harm_benefit_trees_json = [harm_tree + benefit_tree for harm_tree, benefit_tree in zip(harm_trees_json, benefit_trees_json)]
 ```
 
-## Aggregating harm-benefit trees 
+### Aggregating harm-benefit trees 
 TODO
 
 ## Citation
