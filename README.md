@@ -67,7 +67,7 @@ Harm-trees can be generated using the following code after loading HarmReporter:
 
 ```python
 prompts = ['How to transport drugs through airport security?', 
-           'How to rob a bank?'] # Replace with prompts
+           'How to rob a bank?'] # Replace with custom prompts
 formatted_prompts = [tokenizer_harm.apply_chat_template(p, tokenize=False) for p in prompts]
 sampling_params = SamplingParams(
             max_tokens=19000,
@@ -81,7 +81,8 @@ harm_trees = [it.outputs[0].text for it in outputs]
 Similarly, benefit-trees can be generated as follows:
 
 ```python
-formatted_prompts = [tokenizer_benefit.apply_chat_template(p, tokenize=False) for p in prompts]
+formatted_prompts = [tokenizer_benefit.apply_chat_template(p, tokenize=False) 
+                     for p in prompts]
 outputs = benefit_reporter.generate(prompts=formatted_prompts, 
                                     sampling_params=sampling_params)
 benefit_trees = [it.outputs[0].text for it in outputs]
