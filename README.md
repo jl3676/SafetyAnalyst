@@ -2,10 +2,10 @@
 
 <p align="center">
   <a href="https://arxiv.org/abs/2410.16665">
-    <img src="https://img.shields.io/badge/📝-Paper-blue">
+    <img src="https://img.shields.io/badge/📝-Paper-black">
   </a>
   <a href="https://huggingface.co/datasets/jl3676/SafetyAnalystData">
-    <img src="https://img.shields.io/badge/🤗-Data-yellow">
+    <img src="https://img.shields.io/badge/🤗-Data-blue">
   </a>
   <a href="https://huggingface.co/jl3676/HarmReporter">
     <img src="https://img.shields.io/badge/🤗-HarmReporter-red">
