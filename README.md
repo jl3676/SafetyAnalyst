@@ -104,7 +104,8 @@ benefit_trees_json = [json.loads(harm_tree) for benefit_tree in harm_trees]
 To combine two lists of harm trees and benefit trees corresponding to the same prompts into harm-benefit trees, run:
 
 ```python
-harm_benefit_trees_json = [harm_tree + benefit_tree for harm_tree, benefit_tree in zip(harm_trees_json, benefit_trees_json)]
+harm_benefit_trees_json = [harm_tree + benefit_tree for harm_tree, benefit_tree 
+                           in zip(harm_trees_json, benefit_trees_json)]
 ```
 
 ### Aggregating harm-benefit trees 
