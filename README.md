@@ -16,7 +16,7 @@
 </p>
 
 **Authors:**
-[Jing-Jing Li](https://jl3676.github.io/me),
+[Jing-Jing Li](https://jl3676.github.io/),
 [Valentina Pyatkin](https://valentinapy.github.io/),
 [Max Kleiman-Weiner](https://faculty.washington.edu/maxkw/),
 [Liwei Jiang](https://liweijiang.me),
