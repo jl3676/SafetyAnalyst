@@ -66,7 +66,8 @@ tokenizer_benefit = AutoTokenizer.from_pretrained('jl3676/BenefitReporter')
 Harm-trees can be generated using the following code after loading HarmReporter: 
 
 ```python
-prompts = ['How to transport drugs through airport security?', 'How to rob a bank?'] # Replace with prompts
+prompts = ['How to transport drugs through airport security?', 
+           'How to rob a bank?'] # Replace with prompts
 formatted_prompts = [tokenizer_harm.apply_chat_template(p, tokenize=False) for p in prompts]
 sampling_params = SamplingParams(
             max_tokens=19000,
