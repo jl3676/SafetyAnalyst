@@ -5,10 +5,10 @@
     <img src="https://img.shields.io/badge/📝-Paper-blue">
   </a>
   <a href="https://huggingface.co/datasets/jl3676/SafetyAnalystData">
-    <img src="https://img.shields.io/badge/🤗-Data-orange">
+    <img src="https://img.shields.io/badge/🤗-Data-yellow">
   </a>
   <a href="https://huggingface.co/jl3676/HarmReporter">
-    <img src="https://img.shields.io/badge/🤗-HarmReporter-green">
+    <img src="https://img.shields.io/badge/🤗-HarmReporter-red">
   </a>
   <a href="https://huggingface.co/jl3676/BenefitReporter">
     <img src="https://img.shields.io/badge/🤗-BenefitReporter-green">
