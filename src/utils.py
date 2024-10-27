@@ -58,16 +58,22 @@ def generate_trees(prompts,
 
     return trees, successful
 
+def return_trees_JSON(trees):
+    trees_json = []
+    for tree in trees:
+        tree = "]".join(("[" + "[".join(tree.split("[")[1:])).split("]")[:-1]) + "]"
+        try:
+            tree = json.loads(repair_json(tree))
+        except:
+            tree = []
+        trees_json.append(tree)
+    return trees_json
+
 def combine_trees(harm_trees: list[str], benefit_trees: list[str]):
     harm_benefit_trees = []
     for harm_tree, benefit_tree in zip(harm_trees, benefit_trees):
-        harm_tree = "]".join(("[" + "[".join(harm_tree.split("[")[1:])).split("]")[:-1]) + "]"
-        harm_tree = json.loads(repair_json(harm_tree))
-        benefit_tree = "]".join(("[" + "[".join(benefit_tree.split("[")[1:])).split("]")[:-1]) + "]"
-        benefit_tree = json.loads(repair_json(benefit_tree))
         harm_benefit_tree = harm_tree + benefit_tree
         harm_benefit_trees.append(harm_benefit_tree)
-
     return harm_benefit_trees
 
 
