@@ -91,7 +91,7 @@ while successful_benefit.sum() < len(successful_benefit):
                                                                  successful=successful_benefit)
 ```
 
-### Converting trees from JSON strings to a searchable format
+### Converting trees from JSON strings into a searchable format
 
 Once all harm trees or benefit trees have been generated in the string format, they can be read as JSONs and converted into a searchable format (list of dictionaries) by:
 
