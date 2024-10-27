@@ -1,4 +1,6 @@
 .DS_Store
 .nojekyll
 docs/.DS_Store
+src/__pycache__
+test.ipynb
 
