@@ -91,7 +91,7 @@ while successful_benefit.sum() < len(successful_benefit):
                                                                  successful=successful_benefit)
 ```
 
-### Converting trees to JSON
+### Converting trees from JSON strings to lists of dictionaries
 
 Once all harm trees or benefit trees have been generated in string format, they can be read as JSONs and converted into list format by:
 
