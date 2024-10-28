@@ -1,4 +1,5 @@
 from vllm import LLM, SamplingParams
+from transformers import AutoTokenizer
 import ray
 
 @ray.remote
@@ -11,6 +12,7 @@ class SafetyReporter():
                          trust_remote_code=True,
                          tokenizer_mode="auto",
                          tensor_parallel_size=num_gpus)
+        self.tokenizer = AutoTokenizer.from_pretrained(f'jl3676/{specialist}')
 
     def batched_generate(self, 
                          prompts: list[str]):

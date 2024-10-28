@@ -3,4 +3,5 @@ json_repair==0.30.0
 numpy==2.1.2
 ray==2.38.0
 scipy==1.14.1
+transformers==4.46.0
 vllm==0.6.3.post1
