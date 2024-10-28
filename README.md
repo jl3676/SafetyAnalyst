@@ -109,10 +109,24 @@ harm_benefit_trees = utils.combine_trees(harm_trees=harm_trees,
                                          benefit_trees=benefit_trees)
 ```
 
-<!--- 
 ### Aggregating harm-benefit trees 
-TODO
--->
+
+`src/aggregation.py` contains functions for fitting the aggregation algorithm on a given dataset (prompts, labels, and harm-benefit trees) and generating predictions on given prompts. To run it in command line: 
+
+```bash
+python -m src.aggregation
+```
+
+Tags:
+- `--input_path`: path to the input `.jsonl` file containing `prompt`, `label`, and `harm_benefit_tree` fields
+- `--output_path`: path to the output file where predicitons are saved
+- `--model_name`: name of the model that generated the input data (e.g., SafetyReporter)
+- `--dataset_name`: name of the prompt dataset used to generated the input data
+- `--analysis_type`: the type of features to aggregate (`both`, `harms`, or `benefits`)
+- `--use_action_weights`: if provided, use individual weights on harmful action categories
+- `--use_aeffect_weights`: if provided, use individual weights on effect categories
+- `--fit`: if provided, fit the aggregation model to the input data and save the fitted parameters to `./saved_params`
+
 
 ## Citation
 
