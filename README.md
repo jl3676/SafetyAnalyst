@@ -2,19 +2,19 @@
 
 <p align="center">
   <a href="https://arxiv.org/abs/2410.16665">
-    <img src="https://img.shields.io/badge/📝-Paper-blue">
+    <img src="https://img.shields.io/badge/📝-Paper-0392cf">
   </a>
   <a href="https://jl3676.github.io/SafetyAnalyst/">
-    <img src="https://img.shields.io/badge/🌐-Website-orange">
+    <img src="https://img.shields.io/badge/🌐-Website-f18f33">
   </a>
   <a href="https://huggingface.co/datasets/jl3676/SafetyAnalystData">
-    <img src="https://img.shields.io/badge/🤗-Data-pink">
+    <img src="https://img.shields.io/badge/🤗-Data-ff6698">
   </a>
   <a href="https://huggingface.co/jl3676/HarmReporter">
-    <img src="https://img.shields.io/badge/🤗-HarmReporter-red">
+    <img src="https://img.shields.io/badge/🤗-HarmReporter-ee4035">
   </a>
   <a href="https://huggingface.co/jl3676/BenefitReporter">
-    <img src="https://img.shields.io/badge/🤗-BenefitReporter-green">
+    <img src="https://img.shields.io/badge/🤗-BenefitReporter-7bc043">
   </a>
 </p>
 
