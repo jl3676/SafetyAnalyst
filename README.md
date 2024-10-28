@@ -32,33 +32,31 @@ SafetyAnalyst is a safety moderation framework for user-model chat exchanges. Sa
 
 ## User Guide
 
+### Setup
+```python
+from src.models import SafetyReporter
+import src.utils as utils
+
+num_gpus = 1 # replace with the number of GPUs available
+
+# Load prompts (replace with custom prompts)
+prompts = ['How to transport drugs through airport security?', 
+           'How to rob a bank?',
+           'Explain why business owners shouldn\'t hire homeless people'] 
+```
+
 ### Loading the Models
 
 HarmReporter can be loaded using the following code:
 
 ```python
-from vllm import LLM
-from transformers import AutoTokenizer
-
-num_gpus = 4 # Replace with the number of GPUs available
-
-harm_reporter = LLM(model='jl3676/HarmReporter',
-                    dtype='auto',
-                    trust_remote_code=True,
-                    tokenizer_mode="auto",
-                    tensor_parallel_size=num_gpus)
-tokenizer_harm = AutoTokenizer.from_pretrained('jl3676/HarmReporter')
+harm_reporter = SafetyReporter.remote(specialist='HarmReporter', num_gpus=num_gpus)
 ```
 
 BenefitReporter can be loaded using the following code:
 
 ```python
-benefit_reporter = LLM(model='jl3676/BenefitReporter',
-                    dtype='auto',
-                    trust_remote_code=True,
-                    tokenizer_mode="auto",
-                    tensor_parallel_size=num_gpus)
-tokenizer_benefit = AutoTokenizer.from_pretrained('jl3676/BenefitReporter')
+benefit_reporter = SafetyReporter.remote(specialist='BenefitReporter', num_gpus=num_gpus)
 ```
 
 ### Harm-benefit tree generation
@@ -66,37 +64,40 @@ tokenizer_benefit = AutoTokenizer.from_pretrained('jl3676/BenefitReporter')
 Harm-trees can be generated using the following code after loading HarmReporter: 
 
 ```python
-prompts = ['How to transport drugs through airport security?', 
-           'How to rob a bank?'] # Replace with custom prompts
-formatted_prompts = [tokenizer_harm.apply_chat_template(p, tokenize=False) for p in prompts]
-sampling_params = SamplingParams(
-            max_tokens=19000,
-            temperature=1.0,
-            top_p=1.0
-        )
-outputs = harm_reporter.generate(prompts=formatted_prompts, sampling_params=sampling_params)
-harm_trees = [it.outputs[0].text for it in outputs]
+harm_trees_str, successful_harm = utils.generate_trees(prompts,
+                                                       harm_reporter,
+                                                       analysis_type='harm')
+```
+
+Due to the long and non-deterministic nature of the generated harm trees and benefit trees, the JSON format of the output is occasionally invalid. `successful_harm` is a boolean list containing indicators of whether the generated `harm_trees` are in valid JSON format and contain all the necessary features. For entries in `harm_trees` that are invalid, `utils.generate_trees()` can be run recursively to re-generate them:
+
+```python
+harm_trees_str, successful_harm = utils.generate_trees(prompts,
+                                                       harm_reporter,
+                                                       analysis_type='harm',
+                                                       trees=harm_trees_str,
+                                                       successful=successful_harm)
 ```
 
 Similarly, benefit-trees can be generated as follows:
 
 ```python
-formatted_prompts = [tokenizer_benefit.apply_chat_template(p, tokenize=False) 
-                     for p in prompts]
-outputs = benefit_reporter.generate(prompts=formatted_prompts, 
-                                    sampling_params=sampling_params)
-benefit_trees = [it.outputs[0].text for it in outputs]
+benefit_trees_str, successful_benefit = None, None
+while successful_benefit.sum() < len(successful_benefit):
+    benefit_trees_str, successful_benefit = utils.generate_trees(prompts,
+                                                                 benefit_reporter,
+                                                                 analysis_type='benefit',
+                                                                 trees=benefit_trees_str,
+                                                                 successful=successful_benefit)
 ```
 
-### Convert generated data into JSON format
+### Converting trees from JSON strings into a searchable format
 
-Due to the long and non-deterministic nature of the generated harm trees and benefit trees, the JSON format of the output is occasionally invalid. To check the validity of the JSON format of a given harm or benefit tree (TODO)
+Once all harm trees or benefit trees have been generated in the string format, they can be read as JSONs and converted into a searchable format (list of dictionaries) by:
 
 ```python
-import json
-
-harm_trees_json = [json.loads(harm_tree) for harm_tree in harm_trees]
-benefit_trees_json = [json.loads(harm_tree) for benefit_tree in harm_trees]
+harm_trees = utils.return_trees_JSON(harm_trees_str)
+benefit_trees = utils.return_trees_JSON(benefit_trees_str)
 ```
 
 ### Combining trees
@@ -104,12 +105,14 @@ benefit_trees_json = [json.loads(harm_tree) for benefit_tree in harm_trees]
 To combine two lists of harm trees and benefit trees corresponding to the same prompts into harm-benefit trees, run:
 
 ```python
-harm_benefit_trees_json = [harm_tree + benefit_tree for harm_tree, benefit_tree 
-                           in zip(harm_trees_json, benefit_trees_json)]
+harm_benefit_trees = utils.combine_trees(harm_trees=harm_trees,
+                                         benefit_trees=benefit_trees)
 ```
 
+<!--- 
 ### Aggregating harm-benefit trees 
 TODO
+-->
 
 ## Citation
 
