@@ -100,7 +100,7 @@ harm_trees = utils.return_trees_JSON(harm_trees_str)
 benefit_trees = utils.return_trees_JSON(benefit_trees_str)
 ```
 
-### Combining trees
+### Combining harm trees and benefit trees
 
 To combine two lists of harm trees and benefit trees corresponding to the same prompts into harm-benefit trees, run:
 
