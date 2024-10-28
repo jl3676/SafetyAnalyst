@@ -109,7 +109,7 @@ harm_benefit_trees = utils.combine_trees(harm_trees=harm_trees,
                                          benefit_trees=benefit_trees)
 ```
 
-### Aggregating harm-benefit trees 
+### Aggregating trees into safety predictions
 
 `src/aggregation.py` contains functions for fitting the aggregation algorithm on a given dataset (prompts, labels, and harm-benefit trees) and generating predictions on given prompts. To run it in command line: 
 
