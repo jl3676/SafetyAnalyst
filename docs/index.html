@@ -52,7 +52,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title"><code class="custom-code">SafetyAnalyst</code>: Interpretable, transparent, and steerable LLM safety moderation</h1>
+            <h1 class="title is-1 publication-title" style="font-size:xxx-large;"><code class="custom-code">SafetyAnalyst</code>: Interpretable, transparent, and steerable safety moderation for AI behavior</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
@@ -166,7 +166,7 @@
         <!-- <h2 class="title is-3">Abstract</h2> -->
         <div class="content has-text-justified">
           <p>
-            Our <code class="custom-code">SafetyAnalyst</code> framework redefines how LLM safety decisions should be made: by explicitly analyzing the harms and benefits entailed in the content and trading them off based on the principles of cost-benefit analysis.
+            Our <code class="custom-code">SafetyAnalyst</code> framework redefines how AI safety decisions should be made: by explicitly analyzing the harms and benefits entailed in the AI behavior and trading them off based on the principles of cost-benefit analysis.
             Given a prompt, <code class="custom-code">SafetyAnalyst</code> creates a structured "harm-benefit tree" that identifies the <i>actions</i> that could be taken if a compliant response were provided, the harmful and beneficial <i>effects</i> of those actions, and the <i>stakeholders</i> that would be impacted by those effects—as well as the <i>likelihood</i>, <i>extent or severity</i>, and <i>immediacy</i> of each effect.
           </p>
         </div>
@@ -197,7 +197,7 @@
         <!-- <h2 class="title is-3">Abstract</h2> -->
         <div class="content has-text-justified">
           <p>
-            We generated extensive harm-benefit feature data using SOTA LLMs (GPT-4o, Gemini-1.5-Pro, Llama-3.1-70B-Instruct, Llama-3.1-405B-Turbo, and Claude-3.5-Sonnet) on 19k user prompts through chain-of-thought prompting. We embedded each prompt in a hypothetical AI language model usage scenario and instructed the LLMs to enumerate all harm-benefit features, which were then used to train two specialist models—one to generate harms and one to generate benefits (<code class="custom-code">HarmReporter</code> and <code class="custom-code">BenefitReporter</code>, together named <code class="custom-code">SafetyReporter</code>)—through symbolic knowledge distillation via supervised fine-tuning of Llama-3.1-8B-Instruct. Given any prompt, <code class="custom-code">SafetyReporter</code> efficiently generates an interpretable harm-benefit tree. The harms and benefits are weighted and traded off by an aggregation algorithm to calculate a harmfulness score, which can be directly translated into content safety labels or refusal decisions. Steerability can be achieved by aligning the weights in the aggregation algorithm to a user’s or community’s preference or to principled safety standards.
+            We implemented the <code class="custom-code">SafetyAnalyst</code> framework into an open-source system for harmful prompt classification and released it, along with the synthetic training data. We generated 1.8 million harm-benefit features using frontier LLMs (GPT-4o, Gemini-1.5-Pro, Llama-3.1-70B-Instruct, Llama-3.1-405B-Turbo, and Claude-3.5-Sonnet) on 19k user prompts through chain-of-thought prompting. We embedded each prompt in a hypothetical AI language model usage scenario and instructed the LLMs to enumerate all harm-benefit features, which were then used to train two specialist models—one to generate harms and one to generate benefits (<code class="custom-code">HarmReporter</code> and <code class="custom-code">BenefitReporter</code>)—through symbolic knowledge distillation via supervised fine-tuning of Llama-3.1-8B-Instruct. Given any prompt, <code class="custom-code">SafetyReporter</code> efficiently generates an interpretable harm-benefit tree. The harms and benefits are weighted and traded off by an independent and fully interpretable aggregation model to calculate a harmfulness score, which can be directly translated into content safety labels or refusal decisions. Steerability can be achieved by aligning the weights in the aggregation model to a user’s or community’s preference or to principled safety standards.
           </p>
         </div>
       </div>
@@ -230,7 +230,7 @@
         <!-- <h2 class="title is-3">Abstract</h2> -->
         <div class="content has-text-justified">
           <p>
-            We applied <code class="custom-code">SafetyReporter</code> to classify LLM prompt safety on a comprehensive set of prompt safety benchmarks. <code class="custom-code">SafetyReporter</code> ourperformed current LLM safety moderation systems on all benchmarks, while offering the benefits of interpretability and steerability that other systems lack.
+            We applied <code class="custom-code">SafetyAnalyst</code> to classify LLM prompt safety on a comprehensive set of prompt safety benchmarks. <code class="custom-code">SafetyAnalyst</code> ourperformed current LLM safety moderation systems on all benchmarks, while offering the benefits of interpretability and steerability that other systems lack.
           </p>
         </div>
       </div>
@@ -372,14 +372,14 @@
       <td><strong>81.6</strong></td>
     </tr>
     <tr>
-      <td style="text-align: left !important;"><strong><code class="custom-code">SafetyReporter</code></strong></td>
-      <td>95.2</td>
-      <td>94.4</td>
-      <td>88.3</td>
-      <td>73.7</td>
-      <td>83.0</td>
-      <td>69.1</td>
-      <td><u>75.4</u></td>
+      <td style="text-align: left !important;"><strong><code class="custom-code">SafetyAnalyst</code></strong></td>
+      <td>88.8</td>
+      <td>96.1</td>
+      <td>90.9</td>
+      <td>79.6</td>
+      <td>88.9</td>
+      <td>75.4</td>
+      <td><u>81.2</u></td>
     </tr>
   </tbody>
 </table>
@@ -396,7 +396,7 @@
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code>@misc{li2024safetyanalystinterpretabletransparentsteerable,
-        title={SafetyAnalyst: Interpretable, transparent, and steerable LLM safety moderation}, 
+        title={SafetyAnalyst: Interpretable, transparent, and steerable safety moderation for AI behavior}, 
         author={Jing-Jing Li and Valentina Pyatkin and Max Kleiman-Weiner and Liwei Jiang and Nouha Dziri and Anne G. E. Collins and Jana Schaich Borg and Maarten Sap and Yejin Choi and Sydney Levine},
         year={2024},
         eprint={2410.16665},
