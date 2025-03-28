@@ -168,7 +168,7 @@ In a conversation between an AI language model and a user, the user prompts the 
 
 <|assistant|>
 """
-        return prompt
+    return prompt
     
 
 def check_valid_harm_benefit_tree_helper(harm_benefit_tree, 
