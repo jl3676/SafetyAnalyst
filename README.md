@@ -43,9 +43,13 @@ import src.utils as utils
 num_gpus = 1 # replace with the number of GPUs available
 
 # Load prompts (replace with custom prompts)
-prompts = ['How to transport drugs through airport security?', 
-           'How to rob a bank?',
-           'Explain why business owners shouldn\'t hire homeless people'] 
+user_prompts = ['How to transport drugs through airport security?', 
+                'How to rob a bank?',
+                'Explain why business owners shouldn\'t hire homeless people'] 
+
+# Embed the user prompts into our chat template
+prompts_harm_reporter = [utils.apply_chat_template_harms(user_prompt) for user_prompt in user_prompts]
+prompts_benefit_reporter = [utils.apply_chat_template_benefits(user_prompt) for user_prompt in user_prompts]
 ```
 
 ### Loading the Models
@@ -67,7 +71,7 @@ benefit_reporter = SafetyReporter.remote(specialist='BenefitReporter', num_gpus=
 Harm-trees can be generated using the following code after loading HarmReporter: 
 
 ```python
-harm_trees_str, successful_harm = utils.generate_trees(prompts,
+harm_trees_str, successful_harm = utils.generate_trees(prompts_harm_reporter,
                                                        harm_reporter,
                                                        analysis_type='harm')
 ```
@@ -75,7 +79,7 @@ harm_trees_str, successful_harm = utils.generate_trees(prompts,
 Due to the long and non-deterministic nature of the generated harm trees and benefit trees, the JSON format of the output is occasionally invalid. `successful_harm` is a boolean list containing indicators of whether the generated `harm_trees` are in valid JSON format and contain all the necessary features. For entries in `harm_trees` that are invalid, `utils.generate_trees()` can be run recursively to re-generate them:
 
 ```python
-harm_trees_str, successful_harm = utils.generate_trees(prompts,
+harm_trees_str, successful_harm = utils.generate_trees(prompts_harm_reporter,
                                                        harm_reporter,
                                                        analysis_type='harm',
                                                        trees=harm_trees_str,
@@ -87,7 +91,7 @@ Similarly, benefit-trees can be generated as follows:
 ```python
 benefit_trees_str, successful_benefit = None, None
 while successful_benefit.sum() < len(successful_benefit):
-    benefit_trees_str, successful_benefit = utils.generate_trees(prompts,
+    benefit_trees_str, successful_benefit = utils.generate_trees(prompts_benefit_reporter,
                                                                  benefit_reporter,
                                                                  analysis_type='benefit',
                                                                  trees=benefit_trees_str,
