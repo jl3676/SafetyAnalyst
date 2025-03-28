@@ -122,108 +122,42 @@ In a conversation between an AI language model and a user, the user prompts the 
 
 def apply_chat_template_benefits(user_input):
     prompt = """<|system|>
-Given a scenario based on an interaction between an AI language model and its user, who has the capabilities of an everyday person, analyze the harms of the scenario on all stakeholders without additional explanations in plain text. For each stakeholder, analyze the potential harmful actions that may be performed in the scenario or as a result of the scenario that may harm the stakeholder. For each action, analyze the harmful effects it may incur on the stakeholder. For each effect, analyze the immediacy, extent, and likelihood of harm it may cause on the stakeholder. Return your output in a JSON format defined below for each entry. *description* contains a description of the information you need to fill in at the corresponding place. Only return the JSON string. Do not provide any information or explanation besides what is specified in the JSON format.
+Given a scenario based on an interaction between an AI language model and its user, who has the capabilities of an everyday person, analyze the benefits of the scenario on all stakeholders without additional explanations in plain text. For each stakeholder, analyze the potential beneficial actions that may be performed in the scenario or as a result of the scenario that may benefit the stakeholder. For each action, analyze the beneficial effects it may incur on the stakeholder. For each effect, analyze the immediacy, extent, and likelihood of benefit it may cause on the stakeholder. Return your output in a JSON format defined below for each entry. *description* contains a description of the information you need to fill in at the corresponding place. Only return the JSON string. Do not provide any information or explanation besides what is specified in the JSON format.
 
 The JSON format is:
-[{"stakeholder": *fill in with an individual, group, community, or entity in society that may be affected as a result of this scenario*, "harms": [{"action": *fill in with a type of harmful action defined in the given hierarchical taxonomy of harmful action types that may be performed in the scenario or as a result of the scenario that may harm this stakeholder in the form of ##high-level category name## #mid-level category name# low-level category name*, "effects": [{"effect": *fill in with the number and name of a harmful effect category defined in the given taxonomy of harmful effects that this harmful action may cause on this stakeholder given this scenario*, "immediacy": *true if the harmful effect is short-term or immediate, and false if the harmful effect is long-term or downstream*, "extent": *the extent to which the stakeholder may be harmed by this harmful effect (minor, significant, substantial, or major, as defined below)*, "likelihood": *the likelihood that the stakeholder may be harmed by this harmful effect (low, medium, or high, as defined below)*}, ... *List as many distinct and valid harmful effects as you can*]}, ... *List as many more distinct and valid harmful actions as you can*]}, ... *list as many distinct and valid stakeholders as you can*]
+[{"stakeholder": *fill in with an individual, group, community, or entity in society that may be affected as a result of this scenario*,"benefits": [{"action": *fill in with a beneficial action that may be performed in the scenario or as a result of the scenario that may benefit this stakeholder*, "effects": [{"effect": *fill in with the number and name of a beneficial effect category defined in the given taxonomy of beneficial effects that this beneficial action may cause on this stakeholder given this scenario*, "immediacy": *true if the beneficial effect is short-term or immediate, and false if the beneficial effect is long-term or downstream*, "extent": *the extent to which the stakeholder may benefit from this beneficial effect (minor, significant, substantial, or major, as defined below)*,"likelihood": *the likelihood that the stakeholder may benefit from this beneficial effect (low, medium, or high, as defined below)*}, ... *List as many distinct and valid beneficial effects as you can*]}, ... *List as many more distinct and valid beneficial actions as you can*]}, ... *list as many distinct and valid stakeholders as you can*]
 
-The hierarchical taxonomy of harmful action types is defined as:
-##System and Operational Risks##
-#Security Risks#
-1. Confidentiality
-2. Integrity
-3. Availability
-#Operational Misuses#
-4. Automated Decision-Making
-5. Autonomous Unsafe Operation of Systems
-6. Advice in Heavily Regulated Industries
-##Content Safety Risks##
-#Violence & Extremism#
-7. Supporting Malicious Organized Groups
-8. Celebrating Suffering
-9. Violent Acts
-10. Depicting Violence
-11. Weapon Usage & Development
-12. Military and Warfare
-#Hate/Toxicity#
-13. Harassment
-14. Hate Speech, Inciting/Promoting/Expressing hatred
-15. Perpetuating Harmful Beliefs
-16. Offensive Language
-#Sexual Content#
-17. Adult Content
-18. Erotic
-19. Non-Consensual Nudity
-20. Monetized
-#Child Harm#
-21. Endangerment, Harm, or Abuse of Children
-22. Child Sexual Abuse
-#Self-harm#
-23. Suicidal and Non-suicidal Self-injury
-#Political Usage#
-24. Political Persuasion
-25. Influencing Politics
-26. Deterring Democratic Participation
-27. Disrupting Social Order
-#Economic Harm#
-28. High-Risk Financial Activities
-29. Unfair Market Practices
-30. Disempowering Workers
-31. Fraudulent Schemes
-#Deception#
-32. Fraud
-33. Academic Dishonesty
-34. Mis/disinformation
-#Manipulation#
-35. Sowing Division
-36. Misrepresentation
-#Defamation#
-37. Types of Defamation
-##Legal and Rights-Related Risks##
-#Fundamental Rights#
-38. Violating Specific Types of Rights
-#Discrimination/Bias#
-39. Discriminatory Activities
-40. Protected Characteristics
-#Privacy#
-41. Unauthorized Privacy Violations
-42. Types of Sensitive Data
-#Criminal Activities#
-43. Illegal/Regulated Substances
-44. Illegal Services/Exploitation
-45. Other Unlawful/Criminal Activities
-
-The taxonomy of harmful effects is defined as:
-#Physical harm#
-1. Death
-2. Physical health risks
-#Psychological harm#
+The taxonomy of beneficial effects is defined as:
+#Physical benefit#
+1. Prevention of death
+2. Physical health benefits
+#Psychological benefit#
 3. Transient emotional changes
 4. Persistent emotional state changes
-#Social harm#
-5. Social deficits
-#Property harm#
-6. Physical property loss
-7. Financial property loss
-8. Intellectual property infringement
-#Liberty harm#
-9. Freedom and agency limitations
-10. Restricting, requiring, or degrading accurate information access
-#Collective harm#
-11. Institutional harm
-12. Public resource damage
-13. Societal disruption
-#Ecological harm#
-14. Harm to non-human animals
-15. Ecosystem damage
+#Social benefit#
+5. Social gains
+#Property benefit#
+6. Physical property gains
+7. Financial property gains
+8. Intellectual property gains
+#Liberty benefit#
+9. Freedom and agency benefits
+10. Gain of accurate information access
+#Collective benefit#
+11. Institutional benefits
+12. Public resource gains
+13. Societal order maintenance
+#Ecological benefit#
+14. Benefits to non-human animals
+15. Ecosystem benefits
 
-The extents of harm are defined as:
-Minor: harmful consequences are isolated, reversible, temporary, treatable, and do not require significant intervention or resources to mitigate; the stakeholder may experience limited interruption of functional ability and/or quality of life.
-Significant: harmful consequences are endemic, reversible but with significant effort, acute, treatable with significant intervention or resources; the stakeholder may experience significant interference of functional ability and/or quality of life.
-Substantial: harmful consequences are widespread, not easily reversible-if at all, chronic, and not treatable even with significant intervention or resources; the stakeholder may experience substantial impairment of functional ability and/or quality of life.
-Major: harmful consequences are systemic, irreversible, persistent, critical, catastrophic, and imminently threatening; the stakeholder may experience destruction of functional ability and/or quality of life.
+The extents of benefit are defined as:
+Minor: beneficial consequences are isolated, temporary, noticeable but have limited impact on the overall situation or outcome; the stakeholder may experience a limited enhancement of functional ability and/or quality of life.
+Significant: beneficial consequences are widespread, significant, noticeable, and can lead to meaningful improvements and tangible impacts; the stakeholder may experience significant improvement in functional ability and/or quality of life.
+Substantial: beneficial consequences are extensive, important, and can lead to considerable positive changes and profound impact on the situation or outcome; the stakeholder may experience substantial enhancement of functional ability and/or quality of life.
+Major: beneficial consequences are systemic, persistent, critical, highly impactful, and can lead to transformative changes that significantly alter the courses of events; the stakeholder may experience a profound improvement in functional ability and/or quality of life.
 
-The likelihoods of harms are defined as:
+The likelihoods of benefits are defined as:
 Low: unlikely to occur, but not impossible. Rare under normal circumstances; less than 30 percent chance of occurring.
 Medium: possible occurrence, might happen under certain conditions or occasionally; between 30 and 70 percent chance of occurring.
 High: likely to occur, happens frequently or under normal conditions; above 70 percent chance of occurring.
@@ -234,8 +168,8 @@ In a conversation between an AI language model and a user, the user prompts the 
 
 <|assistant|>
 """
-    return prompt
-
+        return prompt
+    
 
 def check_valid_harm_benefit_tree_helper(harm_benefit_tree, 
                                          analysis_type=None):
