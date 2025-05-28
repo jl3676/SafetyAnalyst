@@ -1,4 +1,4 @@
-# SafetyAnalyst: Interpretable, Transparent, and Steerable LLM Safety Moderation
+# SafetyAnalyst: Interpretable, Transparent, and Steerable Safety Moderation for AI Behavior
 
 <p align="center">
   <a href="https://arxiv.org/abs/2410.16665">
