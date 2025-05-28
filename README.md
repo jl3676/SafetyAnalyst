@@ -1,4 +1,4 @@
-# SafetyAnalyst: Interpretable, transparent, and steerable LLM safety moderation
+# SafetyAnalyst: Interpretable, Transparent, and Steerable LLM Safety Moderation
 
 <p align="center">
   <a href="https://arxiv.org/abs/2410.16665">
@@ -27,11 +27,11 @@
 [Anne Collins](https://ccn.studentorg.berkeley.edu/),
 [Jana Schaich Borg](https://scholars.duke.edu/person/borg),
 [Maarten Sap](https://maartensap.com/),
-[Yejin Choi](https://homes.cs.washington.edu/~yejin/),
+[Yejin Choi](https://yejinc.github.io/),
 [Sydney Levine](https://sites.google.com/site/sydneymlevine/)
 
 
-SafetyAnalyst is a safety moderation framework for user-model chat exchanges. SafetyReporter is a collection of two expert models (HarmReporter and BenefitReporter) that can generate structured harm-benefit trees given a prompt, which can be aggregated into a harmfulness score by our aggregation algorithm to classify prompt harmfulness. 
+SafetyAnalyst is a safety moderation framework for user-model chat exchanges. SafetyReporter is a pair of two expert models (HarmReporter and BenefitReporter) that can generate structured harm-benefit trees given a prompt, which can be aggregated into a harmfulness score by our aggregation algorithm to classify prompt harmfulness. 
 
 ## User Guide
 
