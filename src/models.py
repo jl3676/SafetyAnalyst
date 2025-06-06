@@ -27,8 +27,8 @@ class SafetyReporter():
         print(f"""Example prompt: {formatted_prompts[0]}""")
         sampling_params = SamplingParams(
             max_tokens=19000,
-            temperature=1.0,
-            top_p=1.0
+            temperature=0.6,
+            top_p=0.9
         )
         outputs = self.model.generate(prompts=formatted_prompts, 
                                       sampling_params=sampling_params, 
