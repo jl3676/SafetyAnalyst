@@ -140,13 +140,10 @@ Tags:
 If you find our work helpful, please cite it as follows!
 
 ```
-@misc{li2025safetyanalystinterpretabletransparentsteerable,
-      title={SafetyAnalyst: Interpretable, transparent, and steerable safety moderation for AI behavior}, 
-      author={Jing-Jing Li and Valentina Pyatkin and Max Kleiman-Weiner and Liwei Jiang and Nouha Dziri and Anne G. E. Collins and Jana Schaich Borg and Maarten Sap and Yejin Choi and Sydney Levine},
-      year={2025},
-      eprint={2410.16665},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2410.16665}, 
+@article{li2024safetyanalyst,
+  title={SafetyAnalyst: Interpretable, transparent, and steerable LLM safety moderation},
+  author={Li, Jing-Jing and Pyatkin, Valentina and Kleiman-Weiner, Max and Jiang, Liwei and Dziri, Nouha and Collins, Anne GE and Borg, Jana Schaich and Sap, Maarten and Choi, Yejin and Levine, Sydney},
+  journal={arXiv preprint arXiv:2410.16665},
+  year={2024}
 }
 ```
